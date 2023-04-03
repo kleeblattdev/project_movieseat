@@ -1,0 +1,54 @@
+[
+ {
+  "klasse": "loge",
+  "preis": 10,
+  "reihe": "A",
+  "sitze": [
+   false,
+   false,
+   true,
+   true,
+   false,
+   true
+  ]
+ },
+ {
+  "klasse": "loge",
+  "preis": 10,
+  "reihe": "B",
+  "sitze": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "klasse": "parkett",
+  "preis": 15,
+  "reihe": "C",
+  "sitze": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ },
+ {
+  "klasse": "parkett",
+  "preis": 15,
+  "reihe": "D",
+  "sitze": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ]
+ }
+]
