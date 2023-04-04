@@ -27,13 +27,24 @@ app.use(cors({ origin: "http://localhost:5173" }));
 //middlware body parser
 app.use(express.json());
 
-//email route
-app.get("/email", (req, res) => {
+app.get("/api/seats", (req, res) => {
+	readFile()
+		.then((data) => res.json(data))
+		.catch((error) => console.log(error));
+});
+
+// send email on put request
+app.put("/api/seats/:id/:seatID", (req, res) => {
+	const index = req.params.id;
+	const seatID = req.params.seatID;
+	console.log(index, seatID);
+	overwriteFile(index, seatID);
+
 	const message = {
 		from: "test@example.com",
 		to: "ichBinderEmpfänger@example.com",
-		subject: "Willkommen",
-		text: "Ich bin ein einfacher Text",
+		subject: "Sitzplatzreservierung",
+		text: "Es wurde ein Platz reserviert",
 		html: "<h1>Ich bin eine H1</h1>",
 	};
 
@@ -41,22 +52,13 @@ app.get("/email", (req, res) => {
 		if (err) console.log("Der Error", err);
 		else {
 			console.log("Die Info", info);
-			res.end();
 		}
 	});
+	res.end();
 });
 
-app.get("/api/seats", (req, res) => {
-	readFile()
-		.then((data) => res.json(data))
-		.catch((error) => console.log(error));
+app.delete("/api/seats", (req, res) => {
+	deleteFile();
 });
-
-app.put("/api/seats", (req, res) => {
-	const data = req.body;
-	overwriteFile(data);
-});
-
-app.delete("/api/seats", (req, res) => {});
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));

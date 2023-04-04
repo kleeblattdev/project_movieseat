@@ -22,10 +22,10 @@ export const writeFile = (data) => {
 	});
 };
 
-export const overwriteFile = () => {
+export const overwriteFile = (index, i) => {
 	return new Promise((resolve, reject) => {
-		readFile().then((data, index, i) => {
-			data[index].sitze.splice(i, 1, false);
+		readFile().then((data) => {
+			data[index].sitze[i] = !data[index].sitze[i];
 			writeFile(data)
 				.then((res) => resolve(data))
 				.catch((err) => reject(err));
