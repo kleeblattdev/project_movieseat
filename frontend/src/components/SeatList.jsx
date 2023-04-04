@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const SeatList = ({ reihe, sitze, klasse, indexReihe, setRefresh }) => {
 	function handleClick(index) {
-		console.log(indexReihe, index);
-
 		fetch(`http://localhost:9999/api/seats/${indexReihe}/${index}`, {
 			method: "PUT",
 		}).then(() => setRefresh((prev) => !prev));
@@ -14,6 +11,7 @@ const SeatList = ({ reihe, sitze, klasse, indexReihe, setRefresh }) => {
 		<section>
 			<h2>Reihe {reihe}</h2>
 			<section className="sitzReihe">
+				{/* elem wird übergeben, da die sitze schon ein boolean sind */}
 				{sitze.map((elem, index) => {
 					return (
 						<div

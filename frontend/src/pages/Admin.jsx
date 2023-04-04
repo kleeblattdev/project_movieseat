@@ -5,7 +5,7 @@ const Admin = () => {
 	const [seats, setSeats] = useState();
 
 	useEffect(() => {
-		fetch("http://localhost:9999/api/seats")
+		fetch(`http://localhost:9999/api/seats`)
 			.then((res) => res.json())
 			.then((data) => {
 				setSeats(data);
@@ -13,9 +13,7 @@ const Admin = () => {
 	}, []);
 
 	function resetAll() {
-		fetch("http://localhost:9999/api/seats", { method: "DELETE" })
-			.then((res) => res.json())
-			.then((data) => setSeats(data));
+		fetch("http://localhost:9999/api/seats", { method: "DELETE" });
 	}
 
 	return (
@@ -30,7 +28,7 @@ const Admin = () => {
 			<section>
 				<p>Umsatz</p>
 			</section>
-			<button onClick={resetAll}>Reset</button>
+			<button onClick={() => resetAll}>Reset</button>
 			<Link to="/">Home</Link>
 		</main>
 	);

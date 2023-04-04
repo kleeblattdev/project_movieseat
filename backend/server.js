@@ -1,19 +1,10 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import nodemailer from "nodemailer";
-import { overwriteFile, readFile } from "./helper.js";
+import { overwriteFile, readFile, deleteFile, sendEmail } from "./helper.js";
 import "./config/config.js";
 
 const PORT = process.env.PORT || 8080;
-const transport = nodemailer.createTransport({
-	host: process.env.MAIL_HOST,
-	port: process.env.MAIL_PORT,
-	auth: {
-		user: process.env.MAIL_USER,
-		pass: process.env.MAIL_PASS,
-	},
-});
 
 const app = express();
 
@@ -37,28 +28,15 @@ app.get("/api/seats", (req, res) => {
 app.put("/api/seats/:id/:seatID", (req, res) => {
 	const index = req.params.id;
 	const seatID = req.params.seatID;
-	console.log(index, seatID);
 	overwriteFile(index, seatID);
-
-	const message = {
-		from: "test@example.com",
-		to: "ichBinderEmpfänger@example.com",
-		subject: "Sitzplatzreservierung",
-		text: "Es wurde ein Platz reserviert",
-		html: "<h1>Ich bin eine H1</h1>",
-	};
-
-	transport.sendMail(message, (err, info) => {
-		if (err) console.log("Der Error", err);
-		else {
-			console.log("Die Info", info);
-		}
-	});
+	/* sendEmail() */
 	res.end();
 });
 
-app.delete("/api/seats", (req, res) => {
-	deleteFile();
+app.delete("/api/seats/:id", (req, res) => {
+	const index = req.params.id;
+	deleteFile(index);
+	res.end();
 });
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));
