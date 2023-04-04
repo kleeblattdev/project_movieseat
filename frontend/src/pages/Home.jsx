@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 import SeatList from "../components/seatList";
 const Home = () => {
 	const [seats, setSeats] = useState();
@@ -19,9 +20,15 @@ const Home = () => {
 			{seats &&
 				seats.map((seat) => {
 					return (
-						<SeatList key={uuidv4()} reihe={seat.reihe} sitze={seat.sitze} />
+						<SeatList
+							key={uuidv4()}
+							reihe={seat.reihe}
+							sitze={seat.sitze}
+							klasse={seat.klasse}
+						/>
 					);
 				})}
+			<Link to="/admin">Admin</Link>
 		</main>
 	);
 };
