@@ -28,7 +28,7 @@ const Admin = () => {
 			<section>
 				<p>Umsatz</p>
 			</section>
-			<button onClick={() => resetAll}>Reset</button>
+			<button onClick={resetAll}>Reset</button>
 			<Link to="/">Home</Link>
 		</main>
 	);

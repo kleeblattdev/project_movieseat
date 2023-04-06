@@ -63,8 +63,8 @@ export const sendEmail = () => {
 export const deleteFile = () => {
 	return new Promise((resolve, reject) => {
 		readFile().then((data) => {
-			const newData = data.map((elem) => {
-				console.log(elem.sitze);
+			const newData = data.forEach((elem) => {
+				elem.sitze.splice(0, 6, true, true, true, true, true, true);
 			});
 			writeFile(data)
 				.then(() => resolve(data))

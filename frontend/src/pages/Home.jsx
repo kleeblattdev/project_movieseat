@@ -11,7 +11,6 @@ const Home = () => {
 		fetch("http://localhost:9999/api/seats")
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
 				setSeats(data);
 			});
 	}, [refresh]);

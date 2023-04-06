@@ -33,9 +33,8 @@ app.put("/api/seats/:id/:seatID", (req, res) => {
 	res.end();
 });
 
-app.delete("/api/seats/:id", (req, res) => {
-	const index = req.params.id;
-	deleteFile(index);
+app.delete("/api/seats", (req, res) => {
+	deleteFile();
 	res.end();
 });
 
